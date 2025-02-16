@@ -9,11 +9,7 @@ spec:
     namespace: blue
   source:
     repoURL: 'git@github.com:amizory/argocd.git'
-    path: manifests
-    helm:
-      fileParameters:
-      - name: values
-        path: demoapp2.yaml
+    path: manifests/demoapp2.yaml
   project: default
   syncPolicy:
     automated:
