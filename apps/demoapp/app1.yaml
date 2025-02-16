@@ -12,9 +12,6 @@ spec:
   source:
     repoURL: 'git@github.com:amizory/argocd.git'
     path: manifests
-    directory:
-      include: "demoapp1.yaml"
-      exclude: "*"
   project: default
   syncPolicy:
     automated:
