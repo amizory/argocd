@@ -14,8 +14,8 @@ spec:
     directory:
       recurse: false
       jsonnet: {}
-      exclude: '*.yaml'
       include: 'demoapp1.yaml'
+      exclude: '*'
   project: default
   syncPolicy:
     automated:
