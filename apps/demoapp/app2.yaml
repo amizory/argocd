@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: myapp2
+  name: myapp1
   namespace: argocd
 spec:
   destination:
@@ -9,7 +9,8 @@ spec:
     namespace: blue
   source:
     repoURL: 'git@github.com:amizory/argocd.git'
-    path: manifests/demoapp2.yaml
+    path: manifests
+    targetRevision: HEAD
   project: default
   syncPolicy:
     automated:
@@ -17,3 +18,13 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+  ignoreDifferences:
+    - group: "*"
+      kind: "*"
+      jsonPointers:
+        - /metadata/name
+  resourceIgnoreDifferences:
+    - group: "*"
+      kind: "*"
+      jsonPointers:
+        - /metadata/name
