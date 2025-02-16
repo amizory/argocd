@@ -9,13 +9,8 @@ spec:
     namespace: blue
   source:
     repoURL: 'git@github.com:amizory/argocd.git'
-    path: manifests
+    path: manifests/app2
     targetRevision: HEAD
-    directory:
-      recurse: false
-      jsonnet: {}
-      include: 'demoapp2.yaml'
-      exclude: '*'
   project: default
   syncPolicy:
     automated:
