@@ -3,8 +3,6 @@ kind: Application
 metadata:
   name: myapp1
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     server: https://kubernetes.default.svc
@@ -12,9 +10,10 @@ spec:
   source:
     repoURL: 'git@github.com:amizory/argocd.git'
     path: manifests
-    directory:
-      include: "demoapp1.yaml"
-      exclude: "*"
+    helm:
+      fileParameters:
+      - name: values
+        path: demoapp1.yaml
   project: default
   syncPolicy:
     automated:
