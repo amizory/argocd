@@ -11,6 +11,11 @@ spec:
     repoURL: 'git@github.com:amizory/argocd.git'
     path: manifests
     targetRevision: HEAD
+    directory:
+      recurse: false
+      jsonnet: {}
+      exclude: '*.yaml'
+      include: 'demoapp1.yaml'
   project: default
   syncPolicy:
     automated:
@@ -18,13 +23,3 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-  ignoreDifferences:
-    - group: "*"
-      kind: "*"
-      jsonPointers:
-        - /metadata/name
-  resourceIgnoreDifferences:
-    - group: "*"
-      kind: "*"
-      jsonPointers:
-        - /metadata/name
