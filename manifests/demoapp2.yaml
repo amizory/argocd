@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lorem-2
+  labels:
+    app: lorem-app-2
+    author: Dmitrii-Sakhno-DevOps
+  annotations:
+    deployment.kubernetes.io/revision: '1'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lorem-app-2
+  template:
+    metadata:
+      labels:
+        app: lorem-app-2
+    spec:
+      containers:
+        - name: lorem-container-2
+          image: amizory/lorem-ingress:0.2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 10m
+              memory: 20Mi
+            limits:
+              cpu: 20m
+              memory: 30Mi
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  minReadySeconds: 10
+  progressDeadlineSeconds: 600
+  revisionHistoryLimit: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lorem-svc-2
+spec:
+  selector:
+    app: lorem-app-2
+  ports:
+    - port: 80
+      name: web-connection
+      protocol: TCP
+      targetPort: 80
+      nodePort: 30102
+  type: NodePort
