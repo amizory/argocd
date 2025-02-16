@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: lorem-2
+  namespace: green
   labels:
     app: lorem-app-2
     author: Dmitrii-Sakhno-DevOps
@@ -43,6 +44,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: lorem-svc-2
+  namespace: green
 spec:
   selector:
     app: lorem-app-2
